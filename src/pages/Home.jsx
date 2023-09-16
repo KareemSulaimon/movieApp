@@ -11,7 +11,9 @@ import { Link  } from 'react-router-dom';
 function Home() {
    const {data} = useStateContext()
    const movies = data.results
-   console.log(movies)
+   
+   const displayedMovies = data && movies && movies.length > 0 ? movies.slice(0, 10) : [];
+
 
   return (
     <div className='flex flex-col w-[1300px] relative items-center border-2'>
@@ -25,11 +27,11 @@ function Home() {
                 <AiOutlineRight className='text-[10px]'/>
                 </div>
         </div>
-      <div className='flex flex-wrap  w-11/12 justify-center xl:justify-between  md:justify-between gap-10 items-center mt-10'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 w-11/12 m-auto'>
         {
           data && movies && movies.length > 0 ? 
           (
-            movies.map((movie) => (
+            displayedMovies.map((movie) => (
               <Link key={movie.id}  to={`/movie/${movie.title}`}>
                  <MovieCard movieData={movie} />
               </Link>
