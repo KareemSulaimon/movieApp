@@ -13,6 +13,8 @@ export const StateContext = ({children}) => {
     useEffect(() => {
 
       const options = {
+
+        
         method: 'GET',
         headers: {
           accept: 'application/json',

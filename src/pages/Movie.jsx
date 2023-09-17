@@ -30,30 +30,30 @@ function Movie() {
   const popularity = movieDetails.popularity / 1000
   const roundedNumber = Math.ceil(popularity)
   return (
-    <div className='flex  xs:flex-wrap w-full mt-4 justify-between'>
+    <div className='flex flex-col sm:flex-row w-full items-center sm:gap-2 mt-4 justify-between'>
     <Sidebar />
-    <div className='flex flex-col xs:flex-wrap w-4/5'>
+    <div className='flex flex-col xs:flex-wrap w-4/5 items-center'>
           <div className='flex w-full cursor-pointer gap-10 overflow-hidden rounded-xl relative'>
-            <img className=' w-full h-[500px] object-cover' src={baseImageUrl + movieDetails.poster_path} alt="Movie Poster" />
+            <img className=' w-full h-[500px] object-cover' src={baseImageUrl + movieDetails.backdrop_path} alt="Movie Poster" />
             <div className='flex flex-col items-center absolute top-28 left-[40%]'>
             <img src={play} alt="play video icon"/>
             </div>
           </div>
-          <div className='flex mt-2 w-full justify-between'>
+          <div className='flex flex-col sm:flex-row  items-center mt-2 w-full justify-between'>
           <div className='flex w-full gap-3  items-center'>
-          <h1 className='flex flex-wrap text-gray-600 font-black text-2xl mb-6'>{movieDetails.title}</h1>
-          <div className='flex gap-3 items-center font-black text-2xl mb-6'> 
+          <h1 className='flex flex-wrap text-gray-600 font-black text-xl mb-6'>{movieDetails.title}</h1>
+          <div className='flex gap-3 items-center font-black text-xl mb-6'> 
             <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
-              <h1 className='text-2xl text-gray-600'>{movieDetails.release_date.slice(0, 4)}</h1>
+              <h1 className='text-xl text-gray-600'>{movieDetails.release_date.slice(0, 4)}</h1>
               <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
             </div>
           <div className='flex gap-3 items-center font-black text-2xl mb-6'> 
-              <h1 className='text-2xl text-gray-600'>PG 13</h1>
+              <h1 className='text-xl text-gray-600'>PG 13</h1>
               <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
-              <h1 className='text-2xl text-gray-600'>2H 10m</h1>
+              <h1 className='text-xl text-gray-600'>2H 10m</h1>
             </div>
             
-          <button className='px-2 py-1 bg-white border border-solid border-red-200 font-bold  rounded text-red-800  text-xl mb-6'>Action</button>
+          <button className='px-2 py-1 bg-white border border-solid border-red-200 font-bold  rounded text-red-800  text-xl mb-6'>{movieDetails.genre_ids[0]}</button>
           <button className='px-2 py-1 bg-white border border-solid border-red-200 font-bold  rounded text-red-800  text-xl mb-6'>Drama</button>
           
           </div>
@@ -67,11 +67,11 @@ function Movie() {
           </div>
 
 
-        <div className='flex w-full justify-between'>
-        <div className='flex flex-col w-3/5 gap-1/5 justify-between items-start'>
+        <div className='flex  flex-col sm:flex-row w-full justify-between'>
+        <div className='flex flex-col w-full sm:w-3/5 sm:gap-1/5 justify-between items-center sm:items-start'>
               {/* <div className='flex flex-col w-3/5 justify-between items-start'> */}
                   <p className='w-full text-16 text-gray-800'>{movieDetails.overview}</p>     
-                  <div className='flex gap-4 mt-4  items-center font-black text-2xl mb-6'>  
+                  <div className='flex gap-4 mt-4  items-center font-black mb-6'>  
                       <h1 className='text-16 font-bold text-gray-600'>Director :</h1>         
                       <h1 className='text-16 font-bold text-red-600'>Joseph Kosinki</h1>         
                   </div>

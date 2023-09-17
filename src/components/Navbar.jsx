@@ -16,16 +16,16 @@ function Navbar() {
   //  console.log(finalResult)
   return (
     <div className="flex flex-col sm:flex-row w-full justify-center sm:justify-around  gap-4 items-center z-20 absolute top-10">
-      <Link to={"/"} className='flex items-center gap-2' >
+      <Link to={"/"} className='flex items-center' >
       <img src={logo} alt="logo icon" />
     </Link>
-      <div className="flex w-4/5 sm:w-2/5 h-4 items-center justify-between border-white border-2 p-4 rounded-lg shadow-md">
+      <div className="flex w-3/5 sm:w-2/5 h-4 items-center  border-white border-2 p-4 rounded-lg shadow-md">
         <input
           type="text"
           placeholder="What do you want to watch?"
           value={searchQuery}
           onChange={handleInputChange}
-          className="w-full placeholder-white bg-transparent border-none outline-0 text-sm sm:text-lg"
+          className="w-full placeholder-white bg-transparent border-none outline-0 text-sm text-white sm:text-lg"
         />
         <BiSearch className="text-white font-bold" />
       </div>

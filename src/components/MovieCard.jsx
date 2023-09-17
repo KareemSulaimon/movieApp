@@ -9,7 +9,7 @@ function MovieCard({movieData:{original_title,release_date,poster_path,vote_aver
   const movieBanner = baseImageUrl + poster_path;
 
   return (
-    <div className='flex flex-col w-64'>
+    <div className='flex flex-col sm:w-64 w-[500px]'>
         <div className='w-full cursor-pointer overflow-hidden relative'>
             <img
             className='w-full h-full object-cover'
