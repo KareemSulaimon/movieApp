@@ -4,10 +4,10 @@ import {AiOutlineDown} from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import { useStateContext } from '../context/StateContext';
 import play from '../assets/play.svg';
-import List from '../assets/List.svg';
+import listi from '../assets/listi.svg';
 import ticket from '../assets/ticket.svg';
 import movie from '../assets/movie.svg';
-import show from '../assets/TV Show.svg';
+import show from '../assets/show.svg';
 import Sidebar from '../components/Sidebar';
 
 function Movie() {
@@ -99,7 +99,7 @@ function Movie() {
                 <h3>See Showtimes </h3> 
             </button>
               <button className='flex items-center w-full gap-1 justify-center px-3 py-3 bg-white border border-solid border-red-200 font-bold  rounded text-gray-600  text-xl'>
-              <img src={List} alt="list icon" />     
+              <img src={listi} alt="list icon" />     
                 <h3>More watch options </h3> 
             </button>
             <div className='flex relative items-center w-full '>

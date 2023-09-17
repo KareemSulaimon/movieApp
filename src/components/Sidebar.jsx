@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../assets/Logo.svg';
 import home from '../assets/home.svg';
 import movie_projector from '../assets/movie_projector.png';
-import show from '../assets/TV show.svg';
+import show from '../assets/show.svg';
 import Calendar from '../assets/Calendar.svg';
 import { Link } from 'react-router-dom';
 
