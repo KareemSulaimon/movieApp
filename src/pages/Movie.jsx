@@ -1,7 +1,14 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
+import {BsFillStarFill} from 'react-icons/bs';
+import {AiOutlineDown} from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import { useStateContext } from '../context/StateContext';
+import play from '../assets/play.svg';
+import list from '../assets/list.svg';
+import ticket from '../assets/ticket.svg';
+import movie from '../assets/movie.svg';
+import show from '../assets/TV Show.svg';
+import Sidebar from '../components/Sidebar';
 
 function Movie() {
   const { data, baseImageUrl } = useStateContext();
@@ -16,22 +23,95 @@ function Movie() {
 
   if (!movieDetails) {
     // You can render a loading state or any appropriate fallback content here
-    return <div>Loading...</div>;
+    return  <div>Loading...</div>;
+    
   }
-
+  
+  const popularity = movieDetails.popularity / 1000
+  const roundedNumber = Math.ceil(popularity)
   return (
-    <div className='flex flex-col xs:flex-wrap gap-20 w-full items-start sm:items-center p-6 sm:p-20 justify-between'>
-      <div className='flex w-4/5 h-[500px] flex-col sm:items-start cursor-pointer gap-10 overflow-hidden rounded-t'>
-        <img className=' w-full h-full object-cover' src={baseImageUrl + movieDetails.poster_path} alt="Movie Poster" />
-      </div>
-      <div className='flex gap-2 items-center'>
-      <h1 className='text-black font-black text-2xl mb-6'>{movieDetails.title}</h1>
-      <h3 className='text-black font-black text-2xl mb-6'>{movieDetails.release_date.slice(0, 4)}</h3>
-      <h3 className='bg-white px-2 py-2 rounded text-red-700 font-black text-2xl mb-6'>Action</h3>
-      <h3 className='bg-white px-2 py-2 rounded text-red-700 font-black text-2xl mb-6'>Drama</h3>
-      <h3 className='bg-white px-2 py-2 rounded text-red-700 font-black text-2xl mb-6'>{movieDetails.popularity}</h3>
-      </div>
-      <p className='w-full text-gray-6000'>{movieDetails.overview}</p>
+    <div className='flex  xs:flex-wrap w-full mt-4 justify-between'>
+    <Sidebar />
+    <div className='flex flex-col xs:flex-wrap w-4/5'>
+          <div className='flex w-full cursor-pointer gap-10 overflow-hidden rounded-xl relative'>
+            <img className=' w-full h-[500px] object-cover' src={baseImageUrl + movieDetails.poster_path} alt="Movie Poster" />
+            <div className='flex flex-col items-center absolute top-28 left-[40%]'>
+            <img src={play} alt="play video icon"/>
+            </div>
+          </div>
+          <div className='flex mt-2 w-full justify-between'>
+          <div className='flex w-full gap-3  items-center'>
+          <h1 className='flex flex-wrap text-gray-600 font-black text-2xl mb-6'>{movieDetails.title}</h1>
+          <div className='flex gap-3 items-center font-black text-2xl mb-6'> 
+            <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
+              <h1 className='text-2xl text-gray-600'>{movieDetails.release_date.slice(0, 4)}</h1>
+              <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
+            </div>
+          <div className='flex gap-3 items-center font-black text-2xl mb-6'> 
+              <h1 className='text-2xl text-gray-600'>PG 13</h1>
+              <h1 className=' w-2 h-2 rounded-full bg-gray-600'></h1>
+              <h1 className='text-2xl text-gray-600'>2H 10m</h1>
+            </div>
+            
+          <button className='px-2 py-1 bg-white border border-solid border-red-200 font-bold  rounded text-red-800  text-xl mb-6'>Action</button>
+          <button className='px-2 py-1 bg-white border border-solid border-red-200 font-bold  rounded text-red-800  text-xl mb-6'>Drama</button>
+          
+          </div>
+
+          <div className='flex items-center'>
+            <button className='px-2 py-1 bg-white text-red-800  text-xl mb-6'>
+              <BsFillStarFill style={{ fontSize: '30px',fill: "red" }} />
+              </button>
+            <h3 className='bg-white px-2 py-2 rounded text-red-700 font-black text-2xl mb-6'>{roundedNumber}K</h3>
+          </div>
+          </div>
+
+
+        <div className='flex w-full justify-between'>
+        <div className='flex flex-col w-3/5 gap-1/5 justify-between items-start'>
+              {/* <div className='flex flex-col w-3/5 justify-between items-start'> */}
+                  <p className='w-full text-16 text-gray-800'>{movieDetails.overview}</p>     
+                  <div className='flex gap-4 mt-4  items-center font-black text-2xl mb-6'>  
+                      <h1 className='text-16 font-bold text-gray-600'>Director :</h1>         
+                      <h1 className='text-16 font-bold text-red-600'>Joseph Kosinki</h1>         
+                  </div>
+                  <div className='flex gap-4 items-center font-black text-2xl mb-6'>  
+                      <h1 className='text-16 font-bold text-gray-600'>Writers :</h1>         
+                      <h1 className='text-16 font-bold text-red-600'>Jim Cash, Jack Epps Jr,Peter Craig</h1>         
+                    </div>
+                  <div className='flex gap-4 items-center font-black text-2xl mb-6'>  
+                      <h1 className='text-16 font-bold text-gray-600'>Stars :</h1>         
+                      <h1 className='text-16 font-bold text-red-600'>Tom Cruise, Jennifer Epps Jr,Milles Teller</h1>         
+                    </div>
+                    <div className='flex items-center w-full'>
+                      <button className='px-3 py-3 bg-red-800  font-bold  text-white rounded text-red-800 text-xl'>Top rated movie #65</button>
+                    <button className='flex items-center justify-between px-3 w-[400px] py-3 bg-white border border-solid border-red-200 font-bold  rounded text-gray-600  text-xl'>
+                      <h3>Awards 9 nomination</h3> 
+                      <AiOutlineDown />
+                    </button>
+                  {/* </div> */}
+              </div>
+          </div>
+        
+          <div className='flex flex-col w-[300px] gap-2 items-center'>
+              <button className='flex items-center bg-red-800 w-full gap-1 justify-center px-3 py-3 e border border-solid border-red-200 font-bold  rounded text-white text-xl'>
+                <img src={ticket} alt="ticket icon" />     
+                <h3>See Showtimes </h3> 
+            </button>
+              <button className='flex items-center w-full gap-1 justify-center px-3 py-3 bg-white border border-solid border-red-200 font-bold  rounded text-gray-600  text-xl'>
+              <img src={list} alt="list icon" />     
+                <h3>More watch options </h3> 
+            </button>
+            <div className='flex relative items-center w-full '>
+            <img src={movie} alt="movie image" />     
+            <button className='flex items-center absolute bottom-2 w-full gap-1 justify-center  font-bold  rounded text-gray-300  text-xl'>
+              <img src={show} alt="list icon" />     
+                <h3>More watch options </h3> 
+            </button>
+        </div>
+        </div>
+        </div>
+     </div>
     </div>
   );
 }

@@ -11,12 +11,12 @@ const Banner = () => {
   return (
     <div className=" flex justify-center items-center flex-col w-full relative">
       <Navbar />
-      <div className='w-full h-[600px] cursor-pointer overflow-hidden'>
+      <div className='w-full h-[650px] md:h-[600px] lg:h-[500px] xl:h-[500px]  cursor-pointer overflow-hidden'>
           <img
             className='w-full h-full object-cover'
             src={poster} alt="movie app banner" />
       </div>
-      <div  className='flex flex-col gap-4 justify-center absolute top-40  left-40 w-[340px]'>
+      <div  className='flex flex-col gap-4 justify-center absolute top-64 sm:top-40  left-40 w-[340px]'>
         <h1 className='text-4xl text-white font-extrabold'>John Wick 3 :<br /> Parabellum</h1>
         <div className='flex items-center gap-4'>
             <span className='flex items-center gap-2 text-lg text-white font-bold'>
