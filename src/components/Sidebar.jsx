@@ -7,6 +7,7 @@ import Calendar from '../assets/Calendar.svg';
 import Logout from '../assets/Logout.svg';
 import { Link } from 'react-router-dom';
 
+
 function Sidebar() {
   return (
     <div className="flex flex-col w-full sm:w-[200px] sm:justify-between sm:h-[600px] bg-white border-r border-t-r  border-solid border-red-200 mb-4 rounded-t-2xl gap-4 items-center sm:items-start">
@@ -31,12 +32,14 @@ function Sidebar() {
           <h1>upcoming</h1>
         </Link>
       </div>
-
-      <div className='flex flex-col hidden px-4 w-[170px] py-4 bg-pink-20 border  rounded-lg  border-solid border-red-300 '>
+      
+     
+      <div className='sm:flex flex-col hidden px-4 w-[170px] py-4 bg-pink-20 border  rounded-lg  border-solid border-red-300 '>
         <h2 className='text-black font-normal'>Play movie quizzes and earn free ticket</h2>
         <small className='text-gray-600 font-normal'>50k people ara playing now</small>
         <button className='px-2 py-1 bg-red-100 border border-solid border-red-200 font-bold rounded-lg text-red-800 text-xs mb-6' data-testid="start-playing-button">Start Playing</button>
       </div>
+    
 
       <Link to={"/"} className='flex items-center gap-2' data-testid="logout-link">
         <img src={Logout} alt="Calendar icon"/>

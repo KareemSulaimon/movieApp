@@ -7,12 +7,10 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  const { data, query} = useStateContext();
+  const { data} = useStateContext();
   const movies = data.results;
   const displayedMovies = data && movies && movies.length > 0 ? movies.slice(0, 10) : [];
 
-   console.log(query)
-   console.log(movies)
 
   return (
     <div className='flex flex-col w-[650px] md:w-[840px] lg:w-[1000px] xl:w-[1340px] relative items-center border-2' data-testid="home-container">

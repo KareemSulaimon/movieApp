@@ -37,13 +37,7 @@ export const StateContext = ({children}) => {
     setQuery(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const filtered = data.results.filter(movie =>
-      movie.title.toLowerCase().includes(query.toLowerCase())
-    );
-    setSearchResult(filtered);
-  };
+  
 
   return (
     <Context.Provider
@@ -53,10 +47,10 @@ export const StateContext = ({children}) => {
         setData,
         searchResult,
         setSearchResult,
-        handleSubmit,
         handleInputChange,
         query,
-        setQuery
+        setQuery,
+        select
       }}
     >
       {children}
