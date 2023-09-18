@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useStateContext } from '../context/StateContext';
 import play from '../assets/play.svg';
 import listi from '../assets/listi.svg';
+import List from '../assets/List.svg';
 import ticket from '../assets/ticket.svg';
 import movie from '../assets/movie.svg';
 import show from '../assets/show.svg';
@@ -91,7 +92,7 @@ function Movie() {
                       <h1 className='text-16 font-bold text-gray-600'>Stars :</h1>         
                       <h1 className='text-16 font-bold text-red-600'>Tom Cruise, Jennifer Epps Jr,Milles Teller</h1>         
                     </div>
-                    <div className='flex flex-col sm:flex-row ems-start itsm:items-center w-full'>
+                    <div className='flex flex-col mb-2 sm:gap-2 sm:flex-row items-start sm:items-center w-full'>
                     <button className="px-3 py-3 bg-red-800 font-bold text-white rounded text-red-800 text-xl" data-testid="top-rated-button">
                           Top rated movie #65
                       </button>
@@ -109,14 +110,14 @@ function Movie() {
                 <h3>See Showtimes </h3> 
             </button>
               <button className='flex items-center w-full gap-1 justify-center px-3 py-3 bg-white border border-solid border-red-200 font-bold  rounded text-gray-600  text-xl'>
-              <img src={listi} alt="list icon" />     
+              <img src={List} alt="list icon" />     
                 <h3>More watch options </h3> 
             </button>
             <div className='flex relative items-center w-full'>
             <img src={movie} alt="movie image" className='w-full '/>     
-            <button className='flex items-center absolute bottom-2 w-full gap-1 justify-center  font-bold  rounded text-gray-300  text-xl'>
-              <img src={show} alt="list icon" />     
-                <h3>The Best Movies and Shows in September </h3> 
+            <button className='flex items-center bg-gray-900 absolute bottom-2 w-full gap-1 justify-center  font-bold  rounded text-gray-300  text-xl'>
+              <img src={listi} alt="list icon" />     
+                <h3 className='text-xs'>The Best Movies and Shows in September </h3> 
             </button>
         </div>
         </div>

@@ -5,7 +5,7 @@ const Context = createContext()
 export const StateContext = ({children}) => {
     // State variables
     const [data, setData] = useState([])
-    const [searchQuery, setSearchQuery] = useState('');
+    const [query, setQuery] = useState('');
    const [searchResult, setSearchResult] = useState([]);
 
     const baseImageUrl = "https://image.tmdb.org/t/p/original";
@@ -22,54 +22,46 @@ export const StateContext = ({children}) => {
         }
       };
    
-        fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-          .then((response) => response.json())
-          .then((data) => {
-            if( data && data.results &&  data.results.length > 0) {
-              setData(data)
-            } else {
-              setData("is loading")
-            }
-          });
-      }, []);
-    
-        // Helper functions
-      const handleInputChange = (event) => {
-        const inputValue = event.target.value;
-        setSearchQuery(inputValue);
-      };
+      fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+      .then((response) => response.json())
+      .then((responseData) => {
+        if (responseData.results && responseData.results.length > 0) {
+          setData(responseData);
+        } else {
+          setData("is loading");
+        }
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   if (searchQuery) {
-  //     const filteredMovies = data.filter((movieTitle) => movieTitle.title === searchQuery);
-  //     setSearchResult(filteredMovies.map((movieTitle) => movieTitle.title));
-  //   } else {
-  //     setSearchResult(data.map((movieTitle) => movieTitle.title));
-  //   }
-  // }, [data]);
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
 
-  // Filter the search results based on the user's input
-  // const finalResult = data.filter((movie) =>
-  // movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const filtered = data.results.filter(movie =>
+      movie.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResult(filtered);
+  };
 
-
-    return (
-        <Context.Provider
-        value={{
-            data,
-            baseImageUrl,
-             setData,
-             handleInputChange,
-             searchQuery,
-             searchResult,
-             setSearchResult,
-            
-        }}
-        >
+  return (
+    <Context.Provider
+      value={{
+        data,
+        baseImageUrl,
+        setData,
+        searchResult,
+        setSearchResult,
+        handleSubmit,
+        handleInputChange,
+        query,
+        setQuery
+      }}
+    >
       {children}
-        </Context.Provider>
-    )
-    
-}
-export const useStateContext = () => useContext(Context)
+    </Context.Provider>
+  );
+};
+
+export const useStateContext = () => useContext(Context);
