@@ -49,8 +49,7 @@ export const StateContext = ({children}) => {
         setSearchResult,
         handleInputChange,
         query,
-        setQuery,
-        select
+        setQuery
       }}
     >
       {children}

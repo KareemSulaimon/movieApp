@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  const { data} = useStateContext();
+  const {data} = useStateContext();
   const movies = data.results;
   const displayedMovies = data && movies && movies.length > 0 ? movies.slice(0, 10) : [];
 

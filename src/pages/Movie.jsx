@@ -31,7 +31,7 @@ function Movie() {
   const popularity = movieDetails.popularity / 1000
   const roundedNumber = Math.ceil(popularity)
   return (
-    <div className="flex flex-col sm:flex-row w-full items-center sm:gap-2 mt-4 justify-between" data-testid="movie-component">
+    <div className="flex flex-col sm:flex-row w-full items-center sm:items-start sm:gap-2 mt-4 justify-between" data-testid="movie-component">
     <Sidebar data-testid="sidebar" />
     <div className="flex flex-col xs:flex-wrap w-4/5 items-center">
           <div className='flex w-full cursor-pointer gap-10 overflow-hidden rounded-xl relative'>
