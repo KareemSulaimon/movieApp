@@ -8,26 +8,22 @@ import listi from '../assets/listi.svg';
 import List from '../assets/List.svg';
 import ticket from '../assets/ticket.svg';
 import movie from '../assets/movie.svg';
-import show from '../assets/show.svg';
 import Sidebar from '../components/Sidebar';
 
 function Movie() {
   const { data, baseImageUrl } = useStateContext();
   const movies = data.results;
-  const { title } = useParams();
+  const { id } = useParams();
 
   let movieDetails = null;
-
-  if (movies && movies.length > 0) {
-    movieDetails = movies.find(movie => movie.title === title);
-  }
-
-  if (!movieDetails) {
-    // You can render a loading state or any appropriate fallback content here
-    return  <div>Loading...</div>;
-    
-  }
   
+  if (movies && movies.length > 0) {
+    movieDetails = movies.find(movie => movie.id == id);
+  } else {
+    movieDetails = "loading .."
+
+  }
+   
   const popularity = movieDetails.popularity / 1000
   const roundedNumber = Math.ceil(popularity)
   return (

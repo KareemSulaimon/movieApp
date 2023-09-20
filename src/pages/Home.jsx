@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStateContext } from '../context/StateContext';
 import Banner from '../components/Banner';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -11,6 +11,8 @@ function Home() {
   const movies = data.results;
   const displayedMovies = data && movies && movies.length > 0 ? movies.slice(0, 10) : [];
 
+ 
+ 
 
   return (
     <div className='flex flex-col w-[650px] md:w-[840px] lg:w-[1000px] xl:w-[1340px] relative items-center border-2' data-testid="home-container">
@@ -25,9 +27,10 @@ function Home() {
         </div>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-10 justify-center items-center w-11/12 m-auto' data-testid="movies-grid">
+       
         {data && movies && movies.length > 0 ? (
           displayedMovies.map((movie) => (
-            <Link key={movie.id} to={`/movie/${movie.title}`} className='flex justify-center items-center' data-testid={`movie-link-${movie.id}`}>
+            <Link key={movie.id} to={`/movies/${movie.id}`} className='flex justify-center items-center' data-testid={`movie-link-${movie.id}`}>
               <MovieCard movieData={movie} />
             </Link>
           ))
