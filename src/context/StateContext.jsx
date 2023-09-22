@@ -1,14 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import loader from '../assets/loader.gif';
+
 
 const Context = createContext();
-
-const apiKey = 'b08efd141931f3c3e825421f0745e34e'; // Replace with your actual API key
 
 export const StateContext = ({ children }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [movie, setMovie] = useState(null);
+  const [people, setPeople] = useState([]);
   const baseImageUrl = 'https://image.tmdb.org/t/p/original';
+
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL
+
+const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
 
   const handleInputChange = (event) => {
     const queries = event.target.value;
@@ -18,33 +23,49 @@ export const StateContext = ({ children }) => {
   const displayMovies = async () => {
     setData([]);
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
-      const data = await response.json();
-      setData(data);
+      const response = await fetch(`${apiUrl}/trending/all/day?api_key=${apiKey}`);
+      const responseData = await response.json();
+      setData(responseData);
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching trending movies:', error);
     }
   };
 
   const handleSubmit = async () => {
     setData([]);
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`);
-      const data = await response.json();
-      setData(data);
+      const response = await fetch(`${apiUrl}/search/movie?query=${query}&api_key=${apiKey}`);
+      const responseData = await response.json();
+      setData(responseData);
     } catch (error) {
-      console.error(error);
+      console.error('Error searching for movies:', error);
     }
   };
 
   const handleClick = async (movieId) => {
-    await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
-      .then(res => res.json())
-      .then(data => setMovie(data))
-      .catch(error => {
-        console.error(error);
-        setMovie(null);
-      });
+    try {
+      const response = await fetch(`${apiUrl}/movie/${movieId}?api_key=${apiKey}`);
+      const responseData = await response.json();
+      setMovie(responseData);
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+      setMovie(null);
+    }
+  };
+
+  const getPeople = async (movieId) => {
+    try {
+      const response = await fetch(`${apiUrl}/movie/${movieId}/credits?api_key=${apiKey}`);
+      const responseData = await response.json();
+      setPeople(responseData); 
+    } catch (error) {
+      console.error('Error fetching movie credits:', error);
+    }
+  };
+
+  const callTwoFunctions = (movieId) => {
+    handleClick(movieId);
+    getPeople(movieId);
   };
 
   useEffect(() => {
@@ -55,7 +76,14 @@ export const StateContext = ({ children }) => {
     }
   }, [query]);
 
-  
+  function DisplayError() {
+    return (
+      <div className="m-auto" data-testid="loader-image">
+        <img className="w-full h-full object-cover" src={loader} alt="loader gif" />
+        <h1  className="text-xl text-black font-extrabold">Make Sure You Are Connected to the Internet</h1>
+      </div>
+    );
+  }
 
   return (
     <Context.Provider
@@ -67,8 +95,10 @@ export const StateContext = ({ children }) => {
         handleInputChange,
         query,
         setQuery,
-        handleClick,
-        movie
+        DisplayError,
+        movie,
+        people,
+        callTwoFunctions
       }}
     >
       {children}
