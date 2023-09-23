@@ -6,14 +6,14 @@ import { useStateContext } from '../context/StateContext';
 import { Link, Form } from 'react-router-dom';
 
 function Navbar() {
-  const { handleSubmit, query, handleInputChange } = useStateContext();
+  const { handleFormSubmit , query, handleInputChange } = useStateContext();
  
   return (
     <div className="flex flex-col sm:flex-row w-full justify-center sm:justify-around gap-4 items-center z-20 absolute top-10" data-testid="navbar">
           <Link to={"/"} className='flex items-center' data-testid="logo-link">
               <img src={logo} alt="logo icon" data-testid="logo-img" />
           </Link>
-          <Form onSubmit={handleSubmit} className="flex w-3/5 sm:w-2/5 h-4 items-center border-white border-2 p-4 rounded-lg shadow-md" data-testid="search-bar">
+          <Form onSubmit={handleFormSubmit } className="flex w-3/5 sm:w-2/5 h-4 items-center border-white border-2 p-4 rounded-lg shadow-md" data-testid="search-bar">
             <input
               type="text"
               placeholder="What do you want to watch?"

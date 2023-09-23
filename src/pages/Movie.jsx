@@ -11,13 +11,13 @@ import Sidebar from '../components/Sidebar';
 function Movie() {
   const { movie, DisplayError, people, baseImageUrl } = useStateContext();
 
-  const directors = movie && people ? people?.crew.filter(member => member.known_for_department === 'Directing') : [];
+  const directors = movie && people && people.filter ? people?.crew.filter(member => member.known_for_department === 'Directing') : [];
   const firstThreeDirectors = people && directors && directors.length > 3 ? directors.slice(0,3) : directors
 
-  const writers = movie && people ? people?.crew.filter(member => member.known_for_department === 'Writing') : [];
+  const writers = movie && people  && people.filter ? people?.crew.filter(member => member.known_for_department === 'Writing') : [];
   const firstThreeWriters = people && directors && writers.length > 3 ? writers.slice(0,3) : writers
 
-  const stars = movie && people ? people?.cast.filter(member => member.known_for_department === 'Acting') : [];
+  const stars = movie && people  && people.filter ? people?.cast.filter(member => member.known_for_department === 'Acting') : [];
   const firstThreeStars = people && stars && stars.length > 3 ? stars.slice(0,3) : stars
 
   const runtime = movie ? movie.runtime / 60 : 0;
