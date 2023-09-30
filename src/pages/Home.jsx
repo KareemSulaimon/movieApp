@@ -7,19 +7,21 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  const { data, callTwoFunctions, DisplayError } = useStateContext(); // Updated the function name
+  // Updated the function name
+  const { data, callTwoFunctions, DisplayError } = useStateContext();
 
   // Extracting movies from the data
   const movies = data?.results;
   const displayedMovies = data && movies && movies.length > 0 ? movies.slice(0, 10) : [];
 
-  if (data && movies && movies.length > 0) {
     return (
       <div className='flex flex-col w-[650px] md:w-[840px] lg:w-[1000px] xl:w-[1340px] relative items-center border-2' data-testid="home-container">
         <div className='w-full' data-testid="banner-container">
           <Banner />
         </div>
-
+        {
+          data && movies && movies.length > 0 ? 
+        <>
         <div className='flex w-11/12 justify-between mt-10' data-testid="featured-movie-container">
           <h3 className='text-[30px] text-black font-bold'>Featured Movie</h3>
           <div className='flex items-center gap-2 text-xl font-bold text-red-400'>
@@ -35,13 +37,14 @@ function Home() {
             </Link>
           ))}
         </div>
-
+        </> 
+        : 
+        <DisplayError />
+         }
         <Footer data-testid="footer" />
       </div>
     );
-  } else {
-    return <DisplayError />;
-  }
+ 
 }
 
 export default Home;

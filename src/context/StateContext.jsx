@@ -10,12 +10,13 @@ export const StateContext = ({ children }) => {
   const [movie, setMovie] = useState(null);
   const [people, setPeople] = useState([]);
   const [error, setError] = useState("")
+  const [idNo, setIdNo] = useState(null)
 
   const baseImageUrl = 'https://image.tmdb.org/t/p/original';
 
   const apiUrl = import.meta.env.VITE_REACT_APP_API_URL
 
-const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
+  const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
 
   const handleInputChange = (event) => {
     const queries = event.target.value;
@@ -34,6 +35,13 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
     }
   };
 
+  useEffect(() => {
+    if (!query) {
+      displayMovies();
+    } 
+  }, [query]);
+
+
   const handleSubmit = async () => {
     setData([]);
     try {
@@ -48,7 +56,7 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
 
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
-    handleSubmit(); // Call the handleSubmit function
+    handleSubmit(); 
   };
 
   const handleClick = async (movieId) => {
@@ -74,16 +82,12 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
     }
   };
 
-  const callTwoFunctions = (movieId) => {
+  function callTwoFunctions(movieId) {
+     console.log(movie)
     handleClick(movieId);
     getPeople(movieId);
   };
 
-  useEffect(() => {
-    if (!query) {
-      displayMovies();
-    } 
-  }, [query]);
 
   function DisplayError() {
     if(error) {
@@ -99,6 +103,7 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
         <h1  className="text-xl text-black font-extrabold">Make Sure You Are Connected to the Internet</h1>
       </div>
     );
+    
   }
 
   return (

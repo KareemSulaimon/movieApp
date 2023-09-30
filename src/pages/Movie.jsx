@@ -11,13 +11,15 @@ import Sidebar from '../components/Sidebar';
 function Movie() {
   const { movie, DisplayError, people, baseImageUrl } = useStateContext();
 
-  const directors = movie && people && people.filter ? people?.crew.filter(member => member.known_for_department === 'Directing') : [];
+  const directors = movie && people && people.crew ? people.crew.filter(member => member.known_for_department == 'Directing') : [];
+ 
   const firstThreeDirectors = people && directors && directors.length > 3 ? directors.slice(0,3) : directors
+ 
 
-  const writers = movie && people  && people.filter ? people?.crew.filter(member => member.known_for_department === 'Writing') : [];
+  const writers = movie && people && people.crew ? people.crew.filter(member => member.known_for_department == 'Writing') : [];
   const firstThreeWriters = people && directors && writers.length > 3 ? writers.slice(0,3) : writers
-
-  const stars = movie && people  && people.filter ? people?.cast.filter(member => member.known_for_department === 'Acting') : [];
+  
+  const stars = movie && people && people.cast ? people.cast.filter(member => member.known_for_department == 'Acting') : [];
   const firstThreeStars = people && stars && stars.length > 3 ? stars.slice(0,3) : stars
 
   const runtime = movie ? movie.runtime / 60 : 0;
@@ -148,9 +150,9 @@ function Movie() {
                 <img src={List} alt="list icon" />
                 <h3>More watch options </h3>
               </button>
-              <div className='flex relative items-center w-full'>
-                <img src={movie} alt="movie image" className='w-full ' />
-                <button className='flex items-center bg-gray-900 absolute bottom-2 w-full gap-1 justify-center  font-bold  rounded text-gray-300  text-xl'>
+              <div className='flex relative items-center h-7 w-full'>
+                <button className='flex items-center bg-gray-900 absolute bottom-2 w-full gap-1 justify-center 
+                 font-bold  rounded text-gray-300  text-xl'>
                   <img src={listi} alt="list icon" />
                   <h3 className='text-xs'>The Best Movies and Shows in September </h3>
                 </button>
