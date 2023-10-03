@@ -10,15 +10,15 @@ import Sidebar from '../components/Sidebar';
 import { useParams } from 'react-router-dom';
 
 function Movie() {
-  const { movie, DisplayError, people, baseImageUrl, setParamId } = useStateContext();
+  const { movie, DisplayError, people, baseImageUrl } = useStateContext();
 
-const param  = useParams()
+// const param  = useParams()
 
- if (param && param.id) {
-   setParamId(param.id)
- } else {
-  setParamId(null)
- }
+//  if (param && param.id) {
+//    setParamId(param.id)
+//  } else {
+//   setParamId(null)
+//  }
 
   const directors = movie && people && people.crew ? people.crew.filter(member => member.known_for_department == 'Directing') : [];
  

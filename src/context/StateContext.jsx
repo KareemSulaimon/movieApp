@@ -10,7 +10,7 @@ export const StateContext = ({ children }) => {
   const [movie, setMovie] = useState(null);
   const [people, setPeople] = useState([]);
   const [error, setError] = useState("")
-  const [paramId, setParamId] = useState(null)
+  // const [paramId, setParamId] = useState(null)
 
   const baseImageUrl = 'https://image.tmdb.org/t/p/original';
 
@@ -90,7 +90,7 @@ export const StateContext = ({ children }) => {
 
 
   function DisplayError() {
-    callTwoFunctions(paramId)
+    callTwoFunctions()
     if(error) {
       return (
         <div className="mt-[50px] m-auto" data-testid="loader-image">
@@ -122,7 +122,7 @@ export const StateContext = ({ children }) => {
         people,
         callTwoFunctions,
         handleFormSubmit,
-        setParamId
+        // setParamId
       }}
     >
       {children}
