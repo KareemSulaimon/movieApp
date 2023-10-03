@@ -7,9 +7,18 @@ import listi from '../assets/listi.svg';
 import List from '../assets/List.svg';
 import ticket from '../assets/ticket.svg';
 import Sidebar from '../components/Sidebar';
+import { useParams } from 'react-router-dom';
 
 function Movie() {
-  const { movie, DisplayError, people, baseImageUrl } = useStateContext();
+  const { movie, DisplayError, people, baseImageUrl, setParamId } = useStateContext();
+
+const param  = useParams()
+
+ if (param && param.id) {
+   setParamId(param.id)
+ } else {
+  setParamId(null)
+ }
 
   const directors = movie && people && people.crew ? people.crew.filter(member => member.known_for_department == 'Directing') : [];
  

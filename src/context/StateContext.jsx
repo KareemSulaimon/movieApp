@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 
 import loader from '../assets/loader.gif';
 
@@ -10,7 +10,7 @@ export const StateContext = ({ children }) => {
   const [movie, setMovie] = useState(null);
   const [people, setPeople] = useState([]);
   const [error, setError] = useState("")
-  const [idNo, setIdNo] = useState(null)
+  const [paramId, setParamId] = useState(null)
 
   const baseImageUrl = 'https://image.tmdb.org/t/p/original';
 
@@ -82,14 +82,15 @@ export const StateContext = ({ children }) => {
     }
   };
 
+  
   function callTwoFunctions(movieId) {
-     console.log(movie)
     handleClick(movieId);
     getPeople(movieId);
   };
 
 
   function DisplayError() {
+    callTwoFunctions(paramId)
     if(error) {
       return (
         <div className="mt-[50px] m-auto" data-testid="loader-image">
@@ -120,7 +121,8 @@ export const StateContext = ({ children }) => {
         movie,
         people,
         callTwoFunctions,
-        handleFormSubmit
+        handleFormSubmit,
+        setParamId
       }}
     >
       {children}
